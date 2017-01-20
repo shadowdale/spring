@@ -7,7 +7,7 @@
 <title>/home.jsp</title>
 </head>
 <body>
-<h3>인덱스 페이지 입니다.</h3>
+<h3>Shadowdale's 인덱스 페이지 입니다.</h3>
 <c:choose>
 	<c:when test="${empty id }">
 		<div>
