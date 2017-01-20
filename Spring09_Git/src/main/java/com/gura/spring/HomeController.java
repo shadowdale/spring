@@ -20,7 +20,7 @@ public class HomeController {
 		 *    1. forward 이동 정보를 리턴해준다.
 		 *    2. redirect 이동 정보를 리턴해준다.
 		 */
-		return "home";
+		return "/home";
 	}
 	
 }
