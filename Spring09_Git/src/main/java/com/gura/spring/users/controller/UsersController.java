@@ -25,7 +25,21 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 	
-	// "/users/sign.do" 요청 처리
+	// "/users/signout.do" 요청 처리
+	@RequestMapping("/users/signout")
+	public ModelAndView signout(HttpSession session) {
+		// 세션 초기화
+		// session.invalidate();
+		// 세션에서 아이디 정보 삭제
+		session.removeAttribute("id");
+		ModelAndView mView = new ModelAndView();
+		mView.addObject("msg", "로그아웃 되었습니다.");
+		mView.addObject("redirectUri", session.getServletContext().getContextPath());
+		mView.setViewName("users/alert");
+		return mView;
+	}
+	
+	// "/users/signin.do" 요청 처리
 	@RequestMapping("/users/signin")
 	public ModelAndView signin(@ModelAttribute UsersDto dto, @RequestParam String uri, HttpSession session) {
 		// 아이디 비밀번호가 유효한지 여부를 확인한다.
