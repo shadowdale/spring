@@ -3,6 +3,7 @@ package com.gura.spring.users.controller;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +24,17 @@ public class UsersController {
 	@Autowired
 	private UsersService usersService;
 	
+	//
+	@RequestMapping("/users/signin_form")
+	public String signinForm(HttpSession session) {
+		// 세션 초기화
+		session.invalidate();
+		
+		// 뷰페이지로 forward 이동
+		return "/users/signin_form";
+	}
+	
+	
 	// "/users/signup.do" 요청 처리
 	@RequestMapping("/users/signup")
 	public ModelAndView signup(HttpServletRequest request, @ModelAttribute UsersDto dto) {
@@ -32,7 +44,7 @@ public class UsersController {
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("msg", dto.getId()+" 회원님 가입되었습니다.");
 		mView.addObject("redirectUri", request.getContextPath());
-		mView.setViewName("users/alert");
+		mView.setViewName("/users/alert");
 		return mView;
 	}
 	
@@ -50,7 +62,7 @@ public class UsersController {
 	@RequestMapping("/users/signup_form")
 	public String signupForm() {
 		
-		return "users/signup_form";
+		return "/users/signup_form";
 	}
 	
 }
