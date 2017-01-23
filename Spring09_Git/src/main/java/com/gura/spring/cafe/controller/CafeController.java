@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gura.spring.cafe.dao.CafeDao;
 import com.gura.spring.cafe.dto.CafeDto;
 import com.gura.spring.cafe.service.CafeService;
 
@@ -56,6 +57,20 @@ public class CafeController {
 	public String delete(@RequestParam int num) {
 		cafeService.delete(num);
 		return "redirect:/cafe/list.do";
+	}
+	
+	// 글 수정 폼 요청 처리
+	@RequestMapping("/cafe/private/updateform")
+	public ModelAndView updateform(@RequestParam int num) {
+		
+		// 수정할 글 정보가 담긴 ModelAndView 객체를 리턴받는다.
+		ModelAndView mView = cafeService.getData(num);
+		
+		// view 페이지의 정보 설정하고
+		mView.setViewName("/cafe/private/updateform");
+		
+		// 리턴해주기
+		return mView;
 	}
 	
 }
