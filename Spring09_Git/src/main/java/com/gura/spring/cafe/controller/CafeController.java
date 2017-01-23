@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gura.spring.cafe.dao.CafeDao;
 import com.gura.spring.cafe.dto.CafeDto;
 import com.gura.spring.cafe.service.CafeService;
 
@@ -17,12 +16,13 @@ public class CafeController {
 	@Autowired
 	private CafeService cafeService;
 	
-	// 글목록 보기 요청처리
+	// 파라미터로 페이지 번호가 넘어올수도 있고 안넘어 올수도 있다.
+	// 만일 안넘어 오면 default 값으로 1을 넣어준다.
 	@RequestMapping("/cafe/list")
-	public ModelAndView list() {
+	public ModelAndView list(@RequestParam(defaultValue="1") int pageNum) {
 		
 		// 글 목록이 담겨 있는 ModelAndView 객체를 리턴 받는다.
-		ModelAndView mView =  cafeService.getList();
+		ModelAndView mView =  cafeService.getList(pageNum);
 		
 		// 뷰페이지의 정보 설정하고
 		mView.setViewName("/cafe/list");
