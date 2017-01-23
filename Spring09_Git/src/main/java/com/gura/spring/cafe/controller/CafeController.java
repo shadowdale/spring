@@ -59,7 +59,7 @@ public class CafeController {
 		return "redirect:/cafe/list.do";
 	}
 	
-	// 글 수정 폼 요청 처리
+	// 글 수정 폼 요청처리
 	@RequestMapping("/cafe/private/updateform")
 	public ModelAndView updateform(@RequestParam int num) {
 		
@@ -71,6 +71,13 @@ public class CafeController {
 		
 		// 리턴해주기
 		return mView;
+	}
+	
+	// 글 수정 요청처리
+	@RequestMapping("/cafe/private/update")
+	public String update(@ModelAttribute CafeDto dto) {
+		cafeService.update(dto);
+		return "redirect:/cafe/list.do";
 	}
 	
 }
