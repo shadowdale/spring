@@ -15,7 +15,7 @@ public class ShopServiceImpl implements ShopService {
 	// 가상의 입급 작업을 하는 메소드
 	@Override
 	public void deposit(String id, int money) {
-		// TODO Auto-generated method stub
+		shopDao.deposit(id, money);
 		
 	}
 	
@@ -24,6 +24,12 @@ public class ShopServiceImpl implements ShopService {
 	public void buy(String id, int price) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public int getBalance(String id) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
