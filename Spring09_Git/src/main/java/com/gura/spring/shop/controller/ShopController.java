@@ -43,13 +43,19 @@ public class ShopController {
 		return "/shop/depositform";
 	}
 	
-	// 입금 요청 처리
+	// 입금 요청처리
 	@RequestMapping("/shop/deposit")
 	public String deposit(@RequestParam String id, @RequestParam int cash) {
 		
 		// ShopService 객체를 이용해서 입금 작업을 한다.
 		shopService.deposit(id, cash);
 		return "redirect:/shop/index.do";
+	}
+	
+	// 상품목록보기 요청처리
+	@RequestMapping("/shop/list")
+	public String list() {
+		return "/shop/list";
 	}
 	
 }
