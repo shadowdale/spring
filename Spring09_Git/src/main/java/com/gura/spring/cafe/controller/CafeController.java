@@ -33,17 +33,17 @@ public class CafeController {
 		return mView;
 	}
 	
-	// 새글 저장 촘 요청처리
+	// 새글 저장 폼 요청처리
 	@RequestMapping("/cafe/private/insertform")
-	public String insertform() {
-		 return "/cafe/private/insertform";
+	public ModelAndView authInsertform() {
+		 return new ModelAndView("/cafe/private/insertform");
 	}
 	
 	// 새글 저장 요청처리
 	@RequestMapping("/cafe/private/insert")
-	public String insert(@ModelAttribute CafeDto dto) {
+	public ModelAndView authInsert(@ModelAttribute CafeDto dto) {
 		cafeService.insert(dto);
-		return "redirect:/cafe/list.do";
+		return new ModelAndView("redirect:/cafe/list.do");
 	}
 	
 	// 글 자세히보기 요청처리
@@ -56,14 +56,14 @@ public class CafeController {
 	
 	// 글 삭제 요청처리
 	@RequestMapping("/cafe/private/delete")
-	public String delete(@RequestParam int num) {
+	public ModelAndView authDelete(@RequestParam int num) {
 		cafeService.delete(num);
-		return "redirect:/cafe/list.do";
+		return new ModelAndView("redirect:/cafe/list.do");
 	}
 	
 	// 글 수정 폼 요청처리
 	@RequestMapping("/cafe/private/updateform")
-	public ModelAndView updateform(@RequestParam int num) {
+	public ModelAndView authUpdateform(@RequestParam int num) {
 		
 		// 수정할 글 정보가 담긴 ModelAndView 객체를 리턴받는다.
 		ModelAndView mView = cafeService.getData(num);
@@ -77,9 +77,9 @@ public class CafeController {
 	
 	// 글 수정 요청처리
 	@RequestMapping("/cafe/private/update")
-	public String update(@ModelAttribute CafeDto dto) {
+	public ModelAndView authUpdate(@ModelAttribute CafeDto dto) {
 		cafeService.update(dto);
-		return "redirect:/cafe/list.do";
+		return new ModelAndView("redirect:/cafe/list.do");
 	}
 	
 }
