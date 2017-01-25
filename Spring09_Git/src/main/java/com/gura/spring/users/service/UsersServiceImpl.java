@@ -26,10 +26,10 @@ public class UsersServiceImpl implements UsersService{
 	@Override
 	public void insert(UsersDto dto) {
 		// 암호화 된 비밀번호를 얻어낸다.
-		String encodePwd = pEncoder.encode(dto.getPwd());
+		String encodedPwd = pEncoder.encode(dto.getPwd());
 		
 		// Dto 객체에 다시 넣어준다.
-		dto.setPwd(encodePwd);
+		dto.setPwd(encodedPwd);
 				
 		usersDao.insert(dto);
 		
@@ -55,6 +55,13 @@ public class UsersServiceImpl implements UsersService{
 
 	@Override
 	public void update(UsersDto dto) {
+		
+		// 암호화 된 비밀번호를 얻어낸다.
+		String encodedPwd = pEncoder.encode(dto.getPwd());
+		
+		// Dto 객체에 다시 넣어준다.
+		dto.setPwd(encodedPwd);
+		
 		usersDao.update(dto);
 		
 	}
