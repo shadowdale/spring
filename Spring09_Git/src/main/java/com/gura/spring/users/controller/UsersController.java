@@ -26,7 +26,7 @@ public class UsersController {
 	
 	// "/users/private/delete.do" 개인정보 삭제 요청 처리
 	@RequestMapping("/users/private/delete")
-	public ModelAndView delete(HttpSession session) {
+	public ModelAndView authDelete(HttpSession session) {
 		// 세션에 저장된 아이디 값을 읽어온다.
 		String id = (String)session.getAttribute("id");
 		
@@ -44,7 +44,7 @@ public class UsersController {
 	
 	// "/users/private/update.do" 요청처리
 	@RequestMapping("/users/private/update")
-	public ModelAndView update(@ModelAttribute UsersDto dto, HttpServletRequest request) {
+	public ModelAndView authUpdate(@ModelAttribute UsersDto dto, HttpServletRequest request) {
 		usersService.update(dto);
 		ModelAndView mView = new ModelAndView();
 		mView.addObject("msg", dto.getId() + "님 회원 정보 수정되었습니다.");
@@ -56,7 +56,7 @@ public class UsersController {
 	
 	// "/users/private/updateform.do" 요청처리
 	@RequestMapping("/users/private/updateform")
-	public ModelAndView updateForm(HttpSession session) {
+	public ModelAndView authUpdateForm(HttpSession session) {
 		
 		// 1. 세션에서 아디디 정보를 읽어온다.
 		String id = (String)session.getAttribute("id");
@@ -73,7 +73,7 @@ public class UsersController {
 	
 	// "/users/private/info.do" 요청 처리
 	@RequestMapping("/users/private/info")
-	public ModelAndView info(HttpSession session) {
+	public ModelAndView authInfo(HttpSession session) {
 		
 		// 1. 세션에 저장된 id 정보를 읽어온다.
 		String id = (String)session.getAttribute("id");
